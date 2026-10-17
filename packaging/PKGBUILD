@@ -8,7 +8,7 @@ url="https://github.com/l1n/rgmond"
 license=('BSD-3-Clause' 'GPL-2.0-only')
 depends=('glibc' 'libgcc')
 backup=('etc/rgmond/host.toml')
-makedepends=('cargo' 'clang')
+makedepends=('cargo' 'clang' 'libbpf')
 optdepends=('ganglia: gmetad, ganglia-web and the gmetric CLI'
             'python: rgmond-import-gmond-conf')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")

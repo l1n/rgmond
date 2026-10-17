@@ -135,7 +135,7 @@ Metric definitions by group. Entries whose names contain `{}` are families with 
 
 ## Building and testing
 
-Building requires a Rust toolchain and Clang, which compiles the BPF programs in `bpf/rgmond.bpf.c` during the build.
+Building requires a Rust toolchain, Clang and the libbpf headers; Clang compiles the BPF programs in `bpf/rgmond.bpf.c` during the build.
 
     cargo build --release
     cargo test
