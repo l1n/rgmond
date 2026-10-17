@@ -1,0 +1,345 @@
+# rgmond configuration for a host that reports its own metrics, equivalent to
+# a stock gmond.conf with gmond's standard Python modules enabled. Generated
+# collection groups can be produced from an existing gmond.conf with
+# rgmond-import-gmond-conf.
+
+[cluster]
+name = "example"
+owner = "unspecified"
+latlong = "unspecified"
+url = "unspecified"
+
+[globals]
+host_tmax = 20
+host_dmax = 86400
+cleanup_threshold = 300
+allow_extra_data = true
+send_metadata_interval = 60
+# Start as root (BPF needs CAP_BPF and CAP_PERFMON), then switch to this user.
+user = "ganglia"
+
+[[udp_recv]]
+bind = "::"
+port = 8649
+
+[[udp_recv]]
+bind = "0.0.0.0"
+port = 8649
+
+[[tcp_accept]]
+bind = "0.0.0.0"
+port = 8649
+
+# NAME gmetad files this host's RRDs under, and the address gmetric on this
+# machine sends from, so its metrics join the same host entry.
+[host]
+name = "host.example.org"
+ip = "192.0.2.10"
+location = "unspecified"
+
+[collectors.params.cpu_stats]
+
+[collectors.params.diskfree]
+"mounts" = "/proc/mounts"
+"min_disk_size" = "1"
+
+[collectors.params.diskstat]
+
+[collectors.params.entropy]
+
+[collectors.params.mem_stats]
+
+[collectors.params.multi_interface]
+"interfaces" = ""
+"send_aggregate_bytes_packets" = "False"
+"excluded_interfaces" = "lo vnet[0-9]+"
+
+[collectors.params.netstats]
+
+[collectors.params.procstat]
+# Track rgmond itself; the key becomes the metric name prefix (procstat_rgmond_*).
+"rgmond" = '/rgmond -c \/etc\/rgmond\/host\.toml/'
+
+[collectors.params.vm_stats]
+
+[[collectors.group]]
+collect_once = true
+time_threshold = 20
+[[collectors.group.metric]]
+name = "heartbeat"
+
+[[collectors.group]]
+collect_every = 60
+time_threshold = 60
+[[collectors.group.metric]]
+name = "cpu_num"
+[[collectors.group.metric]]
+name = "cpu_speed"
+[[collectors.group.metric]]
+name = "mem_total"
+[[collectors.group.metric]]
+name = "swap_total"
+[[collectors.group.metric]]
+name = "boottime"
+[[collectors.group.metric]]
+name = "machine_type"
+[[collectors.group.metric]]
+name = "os_name"
+[[collectors.group.metric]]
+name = "os_release"
+[[collectors.group.metric]]
+name = "location"
+
+[[collectors.group]]
+collect_once = true
+time_threshold = 300
+[[collectors.group.metric]]
+name = "gexec"
+
+[[collectors.group]]
+collect_every = 20
+time_threshold = 90
+[[collectors.group.metric]]
+name = "cpu_user"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "cpu_system"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "cpu_idle"
+value_threshold = 5.0
+[[collectors.group.metric]]
+name = "cpu_nice"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "cpu_aidle"
+value_threshold = 5.0
+[[collectors.group.metric]]
+name = "cpu_wio"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "cpu_steal"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 20
+time_threshold = 90
+[[collectors.group.metric]]
+name = "load_one"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "load_five"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "load_fifteen"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 80
+time_threshold = 950
+[[collectors.group.metric]]
+name = "proc_run"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "proc_total"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 40
+time_threshold = 180
+[[collectors.group.metric]]
+name = "mem_free"
+value_threshold = 1024.0
+[[collectors.group.metric]]
+name = "mem_shared"
+value_threshold = 1024.0
+[[collectors.group.metric]]
+name = "mem_buffers"
+value_threshold = 1024.0
+[[collectors.group.metric]]
+name = "mem_cached"
+value_threshold = 1024.0
+[[collectors.group.metric]]
+name = "swap_free"
+value_threshold = 1024.0
+
+[[collectors.group]]
+collect_every = 40
+time_threshold = 300
+[[collectors.group.metric]]
+name = "bytes_out"
+value_threshold = 4096.0
+[[collectors.group.metric]]
+name = "bytes_in"
+value_threshold = 4096.0
+[[collectors.group.metric]]
+name = "pkts_in"
+value_threshold = 256.0
+[[collectors.group.metric]]
+name = "pkts_out"
+value_threshold = 256.0
+
+[[collectors.group]]
+collect_every = 1800
+time_threshold = 3600
+[[collectors.group.metric]]
+name = "disk_total"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 40
+time_threshold = 180
+[[collectors.group.metric]]
+name = "disk_free"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "part_max_used"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 10
+time_threshold = 45
+[[collectors.group.metric]]
+name = "procs_blocked"
+value_threshold = 0.0
+[[collectors.group.metric]]
+name = "procs_created"
+value_threshold = 0.0
+[[collectors.group.metric]]
+name_match = "softirq_(.+)"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name_match = "cpu_(.+)"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 60
+time_threshold = 180
+[[collectors.group.metric]]
+name_match = "disk_free_(.+)"
+
+[[collectors.group]]
+collect_every = 30
+time_threshold = 30
+[[collectors.group.metric]]
+name_match = "diskstat_(.+)"
+
+[[collectors.group]]
+collect_every = 15
+time_threshold = 50
+[[collectors.group.metric]]
+name = "entropy_avail"
+
+[[collectors.group]]
+collect_every = 30
+time_threshold = 45
+[[collectors.group.metric]]
+name = "mem_writeback"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "mem_dirty"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "mem_anonpages"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "mem_mapped"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "mem_hardware_corrupted"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 15
+time_threshold = 45
+[[collectors.group.metric]]
+name_match = "rx_(.+)"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name_match = "tx_(.+)"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 15
+time_threshold = 45
+[[collectors.group.metric]]
+name = "tcpext_tcploss_percentage"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "tcp_retrans_percentage"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "tcp_outsegs"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "tcp_insegs"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "udp_indatagrams"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "udp_outdatagrams"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "udp_inerrors"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "tcpext_listendrops"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "tcp_attemptfails"
+value_threshold = 1.0
+
+[[collectors.group]]
+collect_every = 30
+time_threshold = 30
+[[collectors.group.metric]]
+name_match = "procstat_(.+)_cpu"
+[[collectors.group.metric]]
+name_match = "procstat_(.+)_mem"
+
+[[collectors.group]]
+collect_every = 30
+time_threshold = 45
+[[collectors.group.metric]]
+name = "vm_vmeff"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "vm_pgmajfault"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "vm_pgpgin"
+value_threshold = 1.0
+[[collectors.group.metric]]
+name = "vm_pgpgout"
+value_threshold = 1.0
+
+# ---- New in rgmond (phase 3): added under new names only -------------------
+
+[collectors.params.bpf]
+features = "biolatency tcp runqlat softirq reclaim"
+tcp_ports = "22 80 443"
+
+[collectors.params.pressure]
+
+[collectors.params.units]
+units = "sshd nginx rgmond@host"
+
+[[collectors.group]]
+collect_every = 30
+time_threshold = 60
+[[collectors.group.metric]]
+name_match = "biolat_.+"
+[[collectors.group.metric]]
+name_match = "tcp_(retrans|rst)_port_.+"
+[[collectors.group.metric]]
+name_match = "runq_lat_.+"
+[[collectors.group.metric]]
+name_match = "softirq_time_.+"
+[[collectors.group.metric]]
+name = "reclaim_stall_ms"
+[[collectors.group.metric]]
+name_match = "psi_.+"
+[[collectors.group.metric]]
+name_match = "unit_.+"
+

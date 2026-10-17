@@ -1,0 +1,1018 @@
+# Metadata C gmond 3.7.2 sends for its built-in and Python-module metrics,
+# so rgmond can send exactly the same. Extracted from captured gmond traffic
+# (tools/extract_spec.py). Names with "{}" are per-device/interface/mount/
+# process families: "{}" matches that part, "{name}" expands to the full
+# metric name and "{mount}" to the mount point diskfree derives from it.
+
+[[metric]]
+name = "boottime"
+type = "uint32"
+units = "s"
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "Last Boot Time"], ["DESC", "The last time that the system was started"], ["GROUP", "system"]]
+
+[[metric]]
+name = "bytes_in"
+type = "float"
+units = "bytes/sec"
+slope = 3
+tmax = 300
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "Bytes Received"], ["DESC", "Number of bytes in per second"], ["GROUP", "network"]]
+
+[[metric]]
+name = "bytes_out"
+type = "float"
+units = "bytes/sec"
+slope = 3
+tmax = 300
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "Bytes Sent"], ["DESC", "Number of bytes out per second"], ["GROUP", "network"]]
+
+[[metric]]
+name = "cpu_aidle"
+type = "float"
+units = "%"
+slope = 3
+tmax = 3800
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_aidle"], ["DESC", "Percent of time since boot idle CPU"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_ctxt"
+type = "float"
+units = "ctxs/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "cpu_ctxt"], ["DESC", "Context Switches"], ["GROUP", "cpu"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "cpu_idle"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_idle"], ["DESC", "Percentage of time that the CPU or CPUs were idle and the system did not have an outstanding disk I/O request"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_intr"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_intr"], ["DESC", "cpu_intr"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_nice"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_nice"], ["DESC", "Percentage of CPU utilization that occurred while executing at the user level with nice priority"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_num"
+type = "uint16"
+units = "CPUs"
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%hu"
+wire = "UShort"
+extra = [["TITLE", "cpu_num"], ["DESC", "Total number of CPUs"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_sintr"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_sintr"], ["DESC", "cpu_sintr"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_speed"
+type = "uint32"
+units = "MHz"
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "cpu_speed"], ["DESC", "CPU Speed in terms of MHz"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_steal"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_steal"], ["DESC", "cpu_steal"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_system"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_system"], ["DESC", "Percentage of CPU utilization that occurred while executing at the system level"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_user"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_user"], ["DESC", "Percentage of CPU utilization that occurred while executing at the user level"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "cpu_wio"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "cpu_wio"], ["DESC", "Percentage of time that the CPU or CPUs were idle during which the system had an outstanding disk I/O request"], ["GROUP", "cpu"]]
+
+[[metric]]
+name = "disk_free"
+type = "double"
+units = "GB"
+slope = 3
+tmax = 180
+dmax = 0
+fmt = "%.3f"
+wire = "Double"
+extra = [["TITLE", "Disk Space Available"], ["DESC", "Total free disk space"], ["GROUP", "disk"]]
+
+[[metric]]
+name = "disk_total"
+type = "double"
+units = "GB"
+slope = 3
+tmax = 1200
+dmax = 0
+fmt = "%.3f"
+wire = "Double"
+extra = [["TITLE", "Total Disk Space"], ["DESC", "Total available disk space"], ["GROUP", "disk"]]
+
+[[metric]]
+name = "entropy_avail"
+type = "uint32"
+units = "bits"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "Entropy Available"], ["DESC", "Entropy Available"], ["GROUP", "ssl"]]
+
+[[metric]]
+name = "gexec"
+type = "string"
+units = ""
+slope = 0
+tmax = 300
+dmax = 0
+fmt = "%s"
+wire = "Str"
+extra = [["TITLE", "Gexec Status"], ["DESC", "gexec available"], ["GROUP", "core"]]
+
+[[metric]]
+name = "heartbeat"
+type = "uint32"
+units = ""
+slope = 4
+tmax = 20
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "heartbeat"], ["DESC", "Last heartbeat"], ["GROUP", "core"]]
+
+[[metric]]
+name = "load_fifteen"
+type = "float"
+units = " "
+slope = 3
+tmax = 950
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "Fifteen Minute Load Average"], ["DESC", "Fifteen minute load average"], ["GROUP", "load"]]
+
+[[metric]]
+name = "load_five"
+type = "float"
+units = " "
+slope = 3
+tmax = 325
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "Five Minute Load Average"], ["DESC", "Five minute load average"], ["GROUP", "load"]]
+
+[[metric]]
+name = "load_one"
+type = "float"
+units = " "
+slope = 3
+tmax = 70
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "One Minute Load Average"], ["DESC", "One minute load average"], ["GROUP", "load"]]
+
+[[metric]]
+name = "location"
+type = "string"
+units = "(x,y,z)"
+slope = 4
+tmax = 1200
+dmax = 0
+fmt = "%s"
+wire = "Str"
+extra = [["TITLE", "Location"], ["DESC", "Location of the machine"], ["GROUP", "core"]]
+
+[[metric]]
+name = "machine_type"
+type = "string"
+units = ""
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%s"
+wire = "Str"
+extra = [["TITLE", "Machine Type"], ["DESC", "System architecture"], ["GROUP", "system"]]
+
+[[metric]]
+name = "mem_anonpages"
+type = "float"
+units = "Bytes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "AnonPages"], ["DESC", "AnonPages"], ["GROUP", "memory"], ["orig_name", "AnonPages"]]
+
+[[metric]]
+name = "mem_buffers"
+type = "float"
+units = "KB"
+slope = 3
+tmax = 180
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Memory Buffers"], ["DESC", "Amount of buffered memory"], ["GROUP", "memory"]]
+
+[[metric]]
+name = "mem_cached"
+type = "float"
+units = "KB"
+slope = 3
+tmax = 180
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Cached Memory"], ["DESC", "Amount of cached memory"], ["GROUP", "memory"]]
+
+[[metric]]
+name = "mem_dirty"
+type = "float"
+units = "Bytes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Mem waiting to be written to disk"], ["DESC", "The total amount of memory waiting to be written back to the disk. "], ["GROUP", "memory"], ["orig_name", "Dirty"]]
+
+[[metric]]
+name = "mem_free"
+type = "float"
+units = "KB"
+slope = 3
+tmax = 180
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Free Memory"], ["DESC", "Amount of available memory"], ["GROUP", "memory"]]
+
+[[metric]]
+name = "mem_hardware_corrupted"
+type = "float"
+units = "Bytes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Memory HardwareCorrupted"], ["DESC", "HardwareCorrupted"], ["GROUP", "memory"], ["orig_name", "HardwareCorrupted"]]
+
+[[metric]]
+name = "mem_mapped"
+type = "float"
+units = "Bytes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Memory Mapped"], ["DESC", "Mapped"], ["GROUP", "memory"], ["orig_name", "Mapped"]]
+
+[[metric]]
+name = "mem_shared"
+type = "float"
+units = "KB"
+slope = 3
+tmax = 180
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Shared Memory"], ["DESC", "Amount of shared memory"], ["GROUP", "memory"]]
+
+[[metric]]
+name = "mem_total"
+type = "float"
+units = "KB"
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Memory Total"], ["DESC", "Total amount of memory displayed in KBs"], ["GROUP", "memory"]]
+
+[[metric]]
+name = "mem_writeback"
+type = "float"
+units = "Bytes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Mem actively being written to disk"], ["DESC", "The total amount of memory actively being written back to the disk."], ["GROUP", "memory"], ["orig_name", "Writeback"]]
+
+[[metric]]
+name = "os_name"
+type = "string"
+units = ""
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%s"
+wire = "Str"
+extra = [["TITLE", "Operating System"], ["DESC", "Operating system name"], ["GROUP", "system"]]
+
+[[metric]]
+name = "os_release"
+type = "string"
+units = ""
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%s"
+wire = "Str"
+extra = [["TITLE", "Operating System Release"], ["DESC", "Operating system release date"], ["GROUP", "system"]]
+
+[[metric]]
+name = "part_max_used"
+type = "float"
+units = "%"
+slope = 3
+tmax = 180
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "Maximum Disk Space Used"], ["DESC", "Maximum percent used for all partitions"], ["GROUP", "disk"]]
+
+[[metric]]
+name = "pkts_in"
+type = "float"
+units = "packets/sec"
+slope = 3
+tmax = 300
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "Packets Received"], ["DESC", "Packets in per second"], ["GROUP", "network"]]
+
+[[metric]]
+name = "pkts_out"
+type = "float"
+units = "packets/sec"
+slope = 3
+tmax = 300
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "Packets Sent"], ["DESC", "Packets out per second"], ["GROUP", "network"]]
+
+[[metric]]
+name = "proc_run"
+type = "uint32"
+units = " "
+slope = 3
+tmax = 950
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "Total Running Processes"], ["DESC", "Total number of running processes"], ["GROUP", "process"]]
+
+[[metric]]
+name = "proc_total"
+type = "uint32"
+units = " "
+slope = 3
+tmax = 950
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "Total Processes"], ["DESC", "Total number of processes"], ["GROUP", "process"]]
+
+[[metric]]
+name = "procs_blocked"
+type = "float"
+units = "processes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Processes blocked"], ["DESC", "Processes blocked"], ["GROUP", "cpu"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "procs_created"
+type = "float"
+units = "proc/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Processes/Threads created"], ["DESC", "Number of processes and threads created"], ["GROUP", "cpu"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_block"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_block"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_blockiopoll"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_blockiopoll"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_hi"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_hi"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_hrtimer"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_hrtimer"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_netrx"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_netrx"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_nettx"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_nettx"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_rcu"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_rcu"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_sched"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_sched"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_tasklet"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_tasklet"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "softirq_timer"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "softirq_timer"], ["DESC", ""], ["GROUP", "softirq"], ["orig_name", "XXX"]]
+
+[[metric]]
+name = "swap_free"
+type = "float"
+units = "KB"
+slope = 3
+tmax = 180
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Free Swap Space"], ["DESC", "Amount of available swap memory"], ["GROUP", "memory"]]
+
+[[metric]]
+name = "swap_total"
+type = "float"
+units = "KB"
+slope = 0
+tmax = 1200
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Swap Space Total"], ["DESC", "Total amount of swap space displayed in KBs"], ["GROUP", "memory"]]
+
+[[metric]]
+name = "tcp_attemptfails"
+type = "float"
+units = "count/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "TCP Failed connection attempts"], ["DESC", "attemptfails"], ["GROUP", "tcp"]]
+
+[[metric]]
+name = "tcp_insegs"
+type = "float"
+units = "count/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "TCP segments received"], ["DESC", "insegs"], ["GROUP", "tcp"]]
+
+[[metric]]
+name = "tcp_outsegs"
+type = "float"
+units = "count/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "TCP segments sent"], ["DESC", "outsegs"], ["GROUP", "tcp"]]
+
+[[metric]]
+name = "tcp_retrans_percentage"
+type = "float"
+units = "pct"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "TCP retransmit percentage"], ["DESC", "TCP retrans percentage, retranssegs / insegs + outsegs"], ["GROUP", "tcp"]]
+
+[[metric]]
+name = "tcpext_listendrops"
+type = "float"
+units = "count/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "SYNs sent to LISTENing sockets ignored"], ["DESC", "listendrops"], ["GROUP", "tcpext"]]
+
+[[metric]]
+name = "tcpext_tcploss_percentage"
+type = "float"
+units = "pct"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "TCP loss percentage"], ["DESC", "TCP percentage loss, tcploss / insegs + outsegs"], ["GROUP", "tcpext"]]
+
+[[metric]]
+name = "udp_indatagrams"
+type = "float"
+units = "count/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "UDP packets in"], ["DESC", "indatagrams"], ["GROUP", "udp"]]
+
+[[metric]]
+name = "udp_inerrors"
+type = "float"
+units = "count/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "UDP packet receive errors"], ["DESC", "inerrors"], ["GROUP", "udp"]]
+
+[[metric]]
+name = "udp_outdatagrams"
+type = "float"
+units = "count/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.5f"
+wire = "Float"
+extra = [["TITLE", "UDP packets out"], ["DESC", "outdatagrams"], ["GROUP", "udp"]]
+
+[[metric]]
+name = "vm_pgmajfault"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.4f"
+wire = "Float"
+extra = [["TITLE", "Major page fault"], ["DESC", "pgmajfault"], ["GROUP", "memory_vm"]]
+
+[[metric]]
+name = "vm_pgpgin"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.4f"
+wire = "Float"
+extra = [["TITLE", "Pages in from disk"], ["DESC", "pgpgin"], ["GROUP", "memory_vm"]]
+
+[[metric]]
+name = "vm_pgpgout"
+type = "float"
+units = "ops/s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.4f"
+wire = "Float"
+extra = [["TITLE", "Pages out to disk"], ["DESC", "pgpgout"], ["GROUP", "memory_vm"]]
+
+[[metric]]
+name = "vm_vmeff"
+type = "float"
+units = "pct"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.4f"
+wire = "Float"
+extra = [["TITLE", "VM Efficiency"], ["DESC", "VM efficiency"], ["GROUP", "memory_vm"]]
+
+[[metric]]
+name = "disk_free_absolute_{}"
+type = "float"
+units = "GB"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "Disk space available (GB) on {mount}"], ["GROUP", "disk"]]
+
+[[metric]]
+name = "disk_free_percent_{}"
+type = "float"
+units = "%"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "Disk space available (%) on {mount}"], ["GROUP", "disk"]]
+
+[[metric]]
+name = "diskstat_{}_io_time"
+type = "float"
+units = "s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The time in seconds spent in I/O operations"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_percent_io_time"
+type = "float"
+units = "percent"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The percent of disk time spent on I/O operations"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_read_bytes_per_sec"
+type = "float"
+units = "bytes/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The number of bytes read per second"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_read_time"
+type = "float"
+units = "s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The time in seconds spent reading"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_reads"
+type = "float"
+units = "reads"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The number of reads completed"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_reads_merged"
+type = "float"
+units = "reads"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The number of reads merged. Reads which are adjacent to each other may be merged for efficiency. Multiple reads may become one before it is handed to the disk, and it will be counted (and queued) as only one I/O."], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_weighted_io_time"
+type = "float"
+units = "s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The weighted time in seconds spend in I/O operations. This measures each I/O start, I/O completion, I/O merge, or read of these stats by the number of I/O operations in progress times the number of seconds spent doing I/O."], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_write_bytes_per_sec"
+type = "float"
+units = "bytes/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The number of bytes written per second"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_write_time"
+type = "float"
+units = "s"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The time in seconds spent writing"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_writes"
+type = "float"
+units = "writes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The number of writes completed"], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "diskstat_{}_writes_merged"
+type = "float"
+units = "writes"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The number of writes merged. Writes which are adjacent to each other may be merged for efficiency. Multiple writes may become one before it is handed to the disk, and it will be counted (and queued) as only one I/O."], ["GROUP", "diskstat"]]
+
+[[metric]]
+name = "procstat_{}_cpu"
+type = "float"
+units = "percent"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "The total percent CPU utilization"], ["GROUP", "procstat"]]
+
+[[metric]]
+name = "procstat_{}_mem"
+type = "uint32"
+units = "B"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "{name}"], ["DESC", "The total memory utilization"], ["GROUP", "procstat"]]
+
+[[metric]]
+name = "rx_bytes_{}"
+type = "float"
+units = "bytes/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "received bytes per sec"], ["GROUP", "network"]]
+
+[[metric]]
+name = "rx_drops_{}"
+type = "float"
+units = "pkts/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "receive packets dropped per sec"], ["GROUP", "network"]]
+
+[[metric]]
+name = "rx_errs_{}"
+type = "float"
+units = "pkts/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "received error packets per sec"], ["GROUP", "network"]]
+
+[[metric]]
+name = "rx_pkts_{}"
+type = "float"
+units = "pkts/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "received packets per sec"], ["GROUP", "network"]]
+
+[[metric]]
+name = "tx_bytes_{}"
+type = "float"
+units = "bytes/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "transmitted bytes per sec"], ["GROUP", "network"]]
+
+[[metric]]
+name = "tx_drops_{}"
+type = "float"
+units = "pkts/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "transmitted dropped packets per sec"], ["GROUP", "network"]]
+
+[[metric]]
+name = "tx_errs_{}"
+type = "float"
+units = "pkts/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "transmitted error packets per sec"], ["GROUP", "network"]]
+
+[[metric]]
+name = "tx_pkts_{}"
+type = "float"
+units = "pkts/sec"
+slope = 3
+tmax = 60
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{name}"], ["DESC", "transmitted packets per sec"], ["GROUP", "network"]]
+

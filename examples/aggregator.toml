@@ -1,0 +1,23 @@
+# rgmond as an aggregator only: receives metrics from other hosts and serves
+# them to gmetad, collecting none itself (no [host] table).
+[cluster]
+name = "aggregated"
+owner = "unspecified"
+latlong = "unspecified"
+url = "unspecified"
+
+[globals]
+host_tmax = 20
+host_dmax = 86400
+cleanup_threshold = 300
+allow_extra_data = true
+send_metadata_interval = 60
+user = "ganglia"
+
+[[udp_recv]]
+bind = "0.0.0.0"
+port = 8650
+
+[[tcp_accept]]
+bind = "0.0.0.0"
+port = 8650

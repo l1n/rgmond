@@ -1,0 +1,146 @@
+# Metadata for metrics new in rgmond (not part of gmond's set). "{}" in a name
+# matches one name component (device, port or unit) and is substituted into
+# TITLE/DESC. Groups are new, so ganglia-web shows these apart from the rest.
+
+[[metric]]
+name = "biolat_{}_avg_ms"
+type = "float"
+units = "ms"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.3f"
+wire = "Float"
+extra = [["TITLE", "{} I/O latency (mean)"], ["DESC", "Mean block request latency on {}, issue to completion, over the last interval (BPF)"], ["GROUP", "disk_latency"]]
+
+[[metric]]
+name = "biolat_{}_p99_ms"
+type = "float"
+units = "ms"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.3f"
+wire = "Float"
+extra = [["TITLE", "{} I/O latency (p99)"], ["DESC", "99th percentile block request latency on {} over the last interval, log2-bucket upper bound (BPF)"], ["GROUP", "disk_latency"]]
+
+[[metric]]
+name = "tcp_retrans_port_{}"
+type = "float"
+units = "segs/sec"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.3f"
+wire = "Float"
+extra = [["TITLE", "TCP retransmits, port {}"], ["DESC", "Segments retransmitted on connections with local port {} (BPF, tcp_retransmit_skb)"], ["GROUP", "tcp_ports"]]
+
+[[metric]]
+name = "tcp_rst_port_{}"
+type = "float"
+units = "resets/sec"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.3f"
+wire = "Float"
+extra = [["TITLE", "TCP resets received, port {}"], ["DESC", "RSTs received on connections with local port {} (BPF, tcp_receive_reset)"], ["GROUP", "tcp_ports"]]
+
+[[metric]]
+name = "runq_lat_avg_us"
+type = "float"
+units = "us"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.1f"
+wire = "Float"
+extra = [["TITLE", "Run queue latency (mean)"], ["DESC", "Mean time from wakeup to running on a CPU over the last interval (BPF)"], ["GROUP", "scheduler"]]
+
+[[metric]]
+name = "runq_lat_p99_us"
+type = "float"
+units = "us"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "Run queue latency (p99)"], ["DESC", "99th percentile wakeup-to-run time over the last interval, log2-bucket upper bound (BPF)"], ["GROUP", "scheduler"]]
+
+[[metric]]
+name = "softirq_time_{}_pct"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.3f"
+wire = "Float"
+extra = [["TITLE", "Softirq {} time"], ["DESC", "Share of all CPU time spent in the {} softirq over the last interval (BPF)"], ["GROUP", "softirq_time"]]
+
+[[metric]]
+name = "reclaim_stall_ms"
+type = "float"
+units = "ms/sec"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.3f"
+wire = "Float"
+extra = [["TITLE", "Direct reclaim stalls"], ["DESC", "Milliseconds per second tasks spent stalled in direct memory reclaim (BPF)"], ["GROUP", "memory_vm"]]
+
+[[metric]]
+name = "psi_{}_some"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "{} pressure (some)"], ["DESC", "Share of time at least one task was stalled waiting for {} (PSI)"], ["GROUP", "pressure"]]
+
+[[metric]]
+name = "psi_{}_full"
+type = "float"
+units = "%"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "{} pressure (full)"], ["DESC", "Share of time all non-idle tasks were stalled waiting for {} (PSI)"], ["GROUP", "pressure"]]
+
+[[metric]]
+name = "unit_{}_cpu"
+type = "float"
+units = "% of a CPU"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.2f"
+wire = "Float"
+extra = [["TITLE", "{} CPU"], ["DESC", "CPU used by systemd unit {} over the last interval (cgroup cpu.stat)"], ["GROUP", "units"]]
+
+[[metric]]
+name = "unit_{}_mem"
+type = "float"
+units = "bytes"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%.0f"
+wire = "Float"
+extra = [["TITLE", "{} memory"], ["DESC", "Memory charged to systemd unit {} (cgroup memory.current)"], ["GROUP", "units"]]
+
+[[metric]]
+name = "unit_{}_tasks"
+type = "uint32"
+units = "tasks"
+slope = 3
+tmax = 90
+dmax = 0
+fmt = "%u"
+wire = "UInt"
+extra = [["TITLE", "{} tasks"], ["DESC", "Processes and threads in systemd unit {} (cgroup pids.current)"], ["GROUP", "units"]]

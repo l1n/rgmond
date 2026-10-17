@@ -1,0 +1,19 @@
+[package]
+name = "rgmond"
+version = "0.1.0"
+edition = "2024"
+license = "BSD-3-Clause"
+description = "Implementation of the Ganglia gmond protocols, with BPF, PSI and cgroup metrics"
+
+[dependencies]
+anyhow = "1.0.104"
+aya = "0.14.0"
+dns-lookup = "4.0.2"
+env_logger = "0.11.11"
+libc = "0.2.191"
+log = "0.4.34"
+regex = "1.13.1"
+serde = { version = "1.0.229", features = ["derive"] }
+socket2 = { version = "0.6.5", features = ["all"] }
+tokio = { version = "1.53.3", features = ["rt", "net", "time", "macros", "sync", "signal", "io-util"] }
+toml = "1.1.8"

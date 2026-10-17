@@ -1,0 +1,16 @@
+[Unit]
+Description=rgmond, Rust replacement for Ganglia gmond (%i)
+Documentation=file:///etc/rgmond/%i.toml
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# Starts as root to attach BPF programs, then drops to globals.user (ganglia).
+ExecStart=/usr/bin/rgmond -c /etc/rgmond/%i.toml
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+# No mount-namespace sandboxing: the disk collectors must see the real mounts.
+
+[Install]
+WantedBy=multi-user.target
